@@ -31,6 +31,14 @@
         android:layout_gravity="center"
         android:layout_marginBottom="16dp" />
 
+    <Button
+        android:id="@+id/btnPlayMusic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Воспроизвести музыку"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp" />
+
 
     <TextView
         android:id="@+id/tvResult"

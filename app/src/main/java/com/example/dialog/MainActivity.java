@@ -3,6 +3,7 @@ package com.example.dialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-
+    boolean isMusicPlaying = false;
     TextView tvResult;
 
     @Override
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnCustomDialog = findViewById(R.id.btnCustomDialog);
         Button btnDatePicker = findViewById(R.id.btnDatePicker);
         Button btnTimePicker = findViewById(R.id.btnTimePicker);
+        Button btnPlayMusic = findViewById(R.id.btnPlayMusic);
 
         tvResult = findViewById(R.id.tvResult);
 
@@ -48,6 +50,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showTimePickerDialog();
+            }
+        });
+        btnPlayMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isMusicPlaying) {
+                    stopService(new Intent(MainActivity.this, MusicService.class));
+                    btnPlayMusic.setText("Воспроизвести музыку");
+                } else {
+                    startService(new Intent(MainActivity.this, MusicService.class));
+                    btnPlayMusic.setText("Остановить музыку");
+                }
+                isMusicPlaying = !isMusicPlaying;
             }
         });
     }
